@@ -46,9 +46,16 @@ def processing_fn(x):
         price = float(price)
         print(price)
 
+        #Set the status of the price to True if > 100.
+        if price > 100:
+            above_100 = True
+        elif price < 100:
+            above_100 = False
+
         x['first_name'] = first_name
         x['last_name'] = last_name
         x['processed_price'] = price
+        x['above_100'] = above_100
 
     except Exception as e:
         print('error occured in processing_fn',e)
