@@ -5,7 +5,7 @@ import re
 import sys
 
 #--------Read csv file-----------#
-df = pd.read_csv('./dataset.csv')
+df = pd.read_csv('C:/Users/HP/Desktop/gov_tech/dataset.csv')
 
 '''
 Drop row if any of the column contains empty or nan value. 
@@ -41,7 +41,7 @@ def processing_fn(x):
 
         #Change the string type of price back to float. 
         price = float(price)
-
+        
         #Set the status of the price to True if > 100.
         if price > 100:
             above_100 = True
@@ -62,4 +62,4 @@ def processing_fn(x):
 
 df = df.apply(processing_fn,axis=1)
 df.drop(columns=['name','price'],inplace=True)
-df.to_csv('./final_result.csv',index=False)
+df.to_csv('C:/Users/HP/Desktop/gov_tech/final_result.csv',index=False)
