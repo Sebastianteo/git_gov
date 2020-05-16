@@ -16,9 +16,6 @@ df.dropna(inplace=True)
 #Since, I drop the rows. I will reset the rolling numbering index value. 
 df.reset_index(drop=True,inplace=True)
 
-print(df.head())
-print(df.info())
-
 def processing_fn(x):
 
     try:
@@ -44,7 +41,6 @@ def processing_fn(x):
 
         #Change the string type of price back to float. 
         price = float(price)
-        print(price)
 
         #Set the status of the price to True if > 100.
         if price > 100:
@@ -58,10 +54,12 @@ def processing_fn(x):
         x['above_100'] = above_100
 
     except Exception as e:
-        print('error occured in processing_fn',e)
+        print('error occured in processing_fn')
+        print(e)
 
     else:
         return(x)
 
 df = df.apply(processing_fn,axis=1)
-print(df.head())
+df.drop(columns=['name','price'],inplace=True)
+df.to_csv('./final_result.csv',index=False)
